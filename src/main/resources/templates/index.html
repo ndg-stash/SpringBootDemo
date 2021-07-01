@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SpringBootDemo</title>
+</head>
+<body>
+<div>
+    <table border="1px solid black">
+        <caption>products</caption>
+        <thead>
+        <th>id</th>
+        <th>title</th>
+        <th>cost</th>
+        </thead>
+        <tr th:each="product : ${products}">
+            <th scope="row" th:text="${product.id}"></th>
+            <td th:text="${product.title}"></td>
+            <td th:text="${product.cost}"></td>
+        </tr>
+    </table>
+    <br>
+    <div>add new product form</div>
+    <div>
+        <form th:action="@{/products_list}" th:object="${product}" method="post">
+            <input type="hidden" id="id" th:field="${product.id}">
+            <input type="text" id="title" th:field="${product.title}" placeholder="Enter product title">
+            <input type="number" id="cost" th:field="${product.cost}" placeholder="Enter product cost">
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>
